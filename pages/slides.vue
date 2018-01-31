@@ -18,6 +18,8 @@
         h2(v-if="slide.title") {{slide.title}}
         div(v-if="slide.content") {{slide.content}}
         div(v-if="slide.html" v-html="slide.html")
+        ul(v-if="slide.list")
+          li(v-for="item in slide.list") {{item}}
 </template>
 
 <script>
@@ -54,15 +56,33 @@ module.exports = {
     const slides = [{
       logo: '/vue.svg',
       talk: 'Intro to Vue.js',
-      html: '<p style="margin:2em 0 0 1.2em"><img src="/sam-grace.jpg" style="width:3.6em;border-radius:50%;margin:0 1em;float:left">Sam Eubank<div style="color:#666;font-size:0.8em">Principal Software Engineer</div>Globys</p>'
+      html: '<p style="margin:2em 0 0 1.2em"><img src="/sam-grace.jpg" style="width:3.6em;border-radius:50%;margin:0 1em;float:left">Sam Eubank<div style="color:#345;font-size:0.8em">Principal Software Engineer</div><span style="color:#4b8">Globys</span></p>'
     }, {
       title: 'Vue.js',
       content: 'Vue is a progressive framework for building user interfaces. Vue is designed to be incrementally adoptable. The core library is focused on the view layer only.'
     }, {
       url: 'https://trends.google.com/trends/embed/explore/TIMESERIES?req=%7B%22comparisonItem%22%3A%5B%7B%22keyword%22%3A%22%5C%22vue%20js%5C%22%20%2B%20%5C%22vue.js%5C%22%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%222013-01-29%202018-01-29%22%7D%2C%7B%22keyword%22%3A%22%5C%22react%20js%5C%22%20%2B%20%5C%22react.js%5C%22%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%222013-01-29%202018-01-29%22%7D%2C%7B%22keyword%22%3A%22%5C%22angular%20js%5C%22%20%2B%20%5C%22angular.js%5C%22%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%222013-01-29%202018-01-29%22%7D%2C%7B%22keyword%22%3A%22%5C%22backbone%20js%5C%22%20%2B%20%5C%22backbone.js%5C%22%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%222013-01-29%202018-01-29%22%7D%5D%2C%22category%22%3A0%2C%22property%22%3A%22%22%7D&tz=480&eq=date%3D2013-01-29%25202018-01-29%26q%3D%2522vue%2520js%2522%2520%252B%2520%2522vue.js%2522%2C%2522react%2520js%2522%2520%252B%2520%2522react.js%2522%2C%2522angular%2520js%2522%2520%252B%2520%2522angular.js%2522%2C%2522backbone%2520js%2522%2520%252B%2520%2522backbone.js%2522'
     }, {
+      title: 'Why so popular?',
+      list: [
+        'Similar to React',
+        'Multi-lang templates'
+      ]
+    }, {
       pen: '2-way Binding',
       slug: 'xYbwjV'
+    }, {
+      pen: 'Components',
+      slug: 'YePBMX'
+    }, {
+      pen: 'Lifecycle Hooks',
+      slug: 'PQwLPp'
+    }, {
+      pen: 'Events, Methods & Conditionals',
+      slug: 'BYybwJ'
+    }, {
+      pen: 'Computed Properties',
+      slug: 'QQwoZJ'
     }]
     const count = slides.length
     return { slides, index, count, zoom }
@@ -93,7 +113,7 @@ module.exports = {
 html
 body
   position relative
-  background #333
+  background #345
   color #fff
   width 100%
   height 100%
@@ -108,7 +128,10 @@ section
   display block
   width 90%
   height 90%
-  background #000
+  background #4b8
+  background -moz-linear-gradient(top left, #123 0%, #000 100%)
+  background -webkit-linear-gradient(top left, #123 0%, #000 100%)
+  background linear-gradient(to bottom right, #123 0%, #000 100%)
   transform-style preserve-3d
   transition transform 0.8s, opacity 0.8s
   opacity 1
@@ -116,6 +139,9 @@ section
 div.card
   padding 3% 5%
   line-height 1.5
+
+.card>ul
+  margin-left 1em
 
 section>.cp_embed_wrapper
   margin -4px
@@ -149,7 +175,7 @@ h1
 
 h2
   font-size 2em
-  color #666
+  color #4b8
   margin-bottom 0.5em
 
 section>iframe

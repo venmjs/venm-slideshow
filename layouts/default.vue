@@ -4,7 +4,7 @@
 
 <style lang="stylus">
 html
-  font normal 18px Roboto, Geneva, Arial
+  font normal 16px Roboto, Geneva, Arial
   -ms-text-size-adjust 100%
   -webkit-text-size-adjust 100%
   -moz-osx-font-smoothing grayscale
