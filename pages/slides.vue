@@ -14,14 +14,16 @@
         data-embed-version="2"
         class="codepen")
 
-      div.card(v-else)
+      div.card(v-else :style="slide.photo ? `background-image:url(${slide.photo})` : ''")
         img.logo(v-if="slide.logo" :src="slide.logo")
         h1(v-if="slide.talk") {{slide.talk}}
         h2(v-if="slide.title") {{slide.title}}
         div(v-if="slide.content") {{slide.content}}
         div(v-if="slide.html" v-html="slide.html")
         ul(v-if="slide.list")
-          li(v-for="item in slide.list") {{item}}
+          li(v-for="item in slide.list")
+            a(href="item" v-if="/^http/.test(item)") {{item}}
+            span(v-else) {{item}}
 </template>
 
 <script>
@@ -67,8 +69,10 @@ module.exports = {
     }, {
       title: 'Why so popular?',
       list: [
-        'Similar to React',
-        'Multi-lang templates'
+        'Familiar patterns',
+        'Not much boilerplate',
+        'If Re* exists, Vue* probably does too',
+        'Template language agnostic!'
       ]
     }, {
       pen: '2-way Binding',
@@ -85,6 +89,20 @@ module.exports = {
     }, {
       pen: 'Computed Properties',
       slug: 'QQwoZJ'
+    }, {
+      url: 'https://vuex.vuejs.org/en/intro.html'
+    }, {
+      url: 'https://nuxtjs.org'
+    }, {
+      url: 'https://vuetifyjs.com'
+    }, {
+      url: 'https://weex.apache.org'
+    }, {
+      title: 'TODO: VENM',
+      list: [ 'Vue.js', 'Express', 'Node.js', 'MongoDB' ]
+    }, {
+      title: 'Thank you!',
+      photo: '/sam.jpg'
     }]
     const count = slides.length
     return { slides, index, count, zoom }
@@ -141,6 +159,9 @@ section
 div.card
   padding 3% 5%
   line-height 1.5
+  height 100%
+  background-size cover
+  background-position center center
 
 .card>ul
   margin-left 1em
@@ -152,12 +173,15 @@ section
 .card
   border-radius 0.5em
   overflow hidden
+  z-index 2
 
 .past
   transform translate3d(-90%, 0, 0) rotateY(-120deg) translate3d(-90%, 0, 0)
+  z-index 1
 
 .future
   transform translate3d(90%, 0, 0) rotateY(120deg) translate3d(90%, 0, 0)
+  z-index 1
 
 .past
 .future
@@ -165,13 +189,13 @@ section
 
 h1
   display block
-  font-size 2.4em
+  font-size 2em
   vertical-align top
   padding 0.2em
   line-height 1.2
 
 .logo
-  width 8em
+  width 7em
   margin 0 1em 0 0
   float left
 
