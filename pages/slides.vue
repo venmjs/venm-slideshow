@@ -3,7 +3,8 @@
     section(v-for="slide, i in slides"
             :class="i < index ? 'past' : i === index ? 'present' : 'future'")
       iframe.card(v-if="slide.url" :src="slide.url")
-      p(v-if="slide.pen"
+
+      p(v-else-if="slide.pen"
         data-height="100%"
         data-theme-id="dark"
         :data-pen-title="slide.pen"
@@ -12,6 +13,7 @@
         data-user="zerious"
         data-embed-version="2"
         class="codepen")
+
       div.card(v-else)
         img.logo(v-if="slide.logo" :src="slide.logo")
         h1(v-if="slide.talk") {{slide.talk}}
